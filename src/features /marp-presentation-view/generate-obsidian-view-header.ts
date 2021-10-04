@@ -1,5 +1,5 @@
 import { WorkspaceLeaf } from 'obsidian';
-import { iconObsidianClose } from 'src/consts/icon-obsidian-close';
+import { iconObsidianClose } from '../../consts/icon-obsidian-close';
 import { iconMarpLogo } from '../../consts/icon-marp-logo';
 
 export function generateObsidianViewHeader(containerEl: HTMLElement, leaf: WorkspaceLeaf) {
