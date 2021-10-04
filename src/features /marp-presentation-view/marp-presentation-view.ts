@@ -2,7 +2,7 @@ import { View, WorkspaceLeaf } from 'obsidian';
 import { generateObsidianViewHeader } from './generate-obsidian-view-header';
 import { MarpPresentationViewOptions } from './marp-presentation-view-options';
 import { logger } from '../../consts/logger';
-import Marp from '@marp-team/marp-core';
+import path from 'path';
 
 export class MarpPresentationView extends View {
 	leaf: WorkspaceLeaf;
@@ -28,16 +28,20 @@ export class MarpPresentationView extends View {
 		// marp-core Docs: https://github.com/marp-team/marp-core#readme
 		// Maybe find usage infos for marp-core at
 		// https://github.com/marp-team/marp-cli
-		const marp = new Marp({
-			math: false,
-		});
-		const { html, css } = marp.render('# Hello, marp-core!');
 
-		content.createEl('style');
-		content.innerText = css;
+		// TODO: Re-enable when compiling this with rollup is fixed!
+		// const marp = new Marp({
+		// 	math: false,
+		// });
+		// const { html, css } = marp.render('# Hello, marp-core!');
+		// content.createEl('style');
+		// content.innerText = css;
+		// const marpContent = content.createDiv();
+		// marpContent.innerHTML = html;
 
-		const marpContent = content.createDiv();
-		marpContent.innerHTML = html;
+		// Workaround with marp-cli
+		const vaultConfigDir = this.app.vault.configDir;
+		const pluginFolder = path.join(vaultConfigDir, 'plugins', 'marpPluginId');
 	}
 
 	getViewType(): string {
