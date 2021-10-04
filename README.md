@@ -12,3 +12,7 @@ Therefore I decided to bring over the MARP (Markdown Presentation Ecosystem) int
 
 This is basically a thin wrapper around the [marp-core](https://github.com/marp-team/marp-core) npm package. 
 If you want to contribute, please feel encouraged to submit a PR to [the plugin repo](https://github.com/bjesuiter/obsidian-marp-presentations/pulls)!
+
+### Some useful documentation Links 
+
+- [Obsidian Plugin API Typing Repo](https://github.com/obsidianmd/obsidian-api)
