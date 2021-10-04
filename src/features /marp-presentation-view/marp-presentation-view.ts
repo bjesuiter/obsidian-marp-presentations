@@ -1,7 +1,8 @@
-import { Constructor, MarkdownEditView, View, WorkspaceLeaf } from 'obsidian';
+import { View, WorkspaceLeaf } from 'obsidian';
 import { generateObsidianViewHeader } from './generate-obsidian-view-header';
 import { MarpPresentationViewOptions } from './marp-presentation-view-options';
 import { logger } from '../../consts/logger';
+import Marp from '@marp-team/marp-core';
 
 export class MarpPresentationView extends View {
 	leaf: WorkspaceLeaf;
@@ -21,9 +22,22 @@ export class MarpPresentationView extends View {
 		const { containerEl } = this;
 		const { header, icon, title, actions } = generateObsidianViewHeader(containerEl, this.leaf);
 
-		const body = containerEl.createDiv({ cls: 'view-content' });
+		const content = containerEl.createDiv({ cls: 'view-content' });
 
-		body.createEl('h2', { text: 'My MARP Presentation View' });
+		// Convert Markdown slide deck into HTML and CSS
+		// marp-core Docs: https://github.com/marp-team/marp-core#readme
+		// Maybe find usage infos for marp-core at
+		// https://github.com/marp-team/marp-cli
+		const marp = new Marp({
+			math: false,
+		});
+		const { html, css } = marp.render('# Hello, marp-core!');
+
+		content.createEl('style');
+		content.innerText = css;
+
+		const marpContent = content.createDiv();
+		marpContent.innerHTML = html;
 	}
 
 	getViewType(): string {
