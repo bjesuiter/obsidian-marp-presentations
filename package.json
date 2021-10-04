@@ -16,7 +16,6 @@
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
-		"@marp-team/marp-cli": "^1.4.1",
 		"@rollup/plugin-commonjs": "^18.0.0",
 		"@rollup/plugin-json": "^4.1.0",
 		"@rollup/plugin-node-resolve": "^11.2.1",
