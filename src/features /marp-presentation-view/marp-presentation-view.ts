@@ -3,6 +3,7 @@ import { generateObsidianViewHeader } from './generate-obsidian-view-header';
 import { MarpPresentationViewOptions } from './marp-presentation-view-options';
 import { logger } from '../../consts/logger';
 import { exec } from 'shelljs';
+import execa from 'execa';
 import path from 'path';
 
 export class MarpPresentationView extends View {
@@ -16,10 +17,10 @@ export class MarpPresentationView extends View {
 	}
 
 	async onOpen() {
-		this.display();
+		return this.display();
 	}
 
-	display() {
+	async display() {
 		const { containerEl } = this;
 		const { header, icon, title, actions } = generateObsidianViewHeader(containerEl, this.leaf);
 
@@ -46,9 +47,15 @@ export class MarpPresentationView extends View {
 		const pluginFolder = path.join(vaultConfigDir, 'plugins', 'marpPluginId');
 		const cli = path.join(pluginFolder, 'marp-mac');
 
-		exec(`${cli} ${this.options.sourceFilePath}`, { cwd: vaultRoot }, (code, stdout, stderr) => {
-			logger.log(`Result of marp-cli: `, { code, stdout, stderr });
-		});
+		try {
+			const { exitCode, stdout } = await execa(cli, [this.options.sourceFilePath], {
+				cwd: vaultRoot,
+			});
+
+			logger.log(`Result of marp-cli: `, { exitCode, stdout });
+		} catch (error) {
+			logger.error(error);
+		}
 	}
 
 	getViewType(): string {
