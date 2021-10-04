@@ -28,6 +28,7 @@
 		"typescript": "^4.2.4"
 	},
 	"dependencies": {
-		"@marp-team/marp-core": "^2.1.1"
+		"@marp-team/marp-core": "^2.1.1",
+		"logdown": "^3.3.1"
 	}
 }
