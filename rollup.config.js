@@ -39,8 +39,20 @@ export default {
 				// -> node_modules/mathjax-full/js/input/tex/ParseUtil.js
 				// -> node_modules/mathjax-full/js/input/tex/TexParser.js
 				// This simulates a dynamic 'require' environment for the whole mathjax library to resolve the problem
-				`node_modules/mathjax-full/**/*.js`,
+				// all in one solution - seems to break imports
+				// `node_modules/mathjax-full/**/*.js`,
+				// explicit solution
+				`node_modules/mathjax-full/js/input/tex/TexParser.js`,
+				`node_modules/mathjax-full/js/input/tex/ParseUtil.js`,
+				`node_modules/mathjax-full/js/input/tex/mathtools/MathtoolsMethods.js`,
+				`node_modules/mathjax-full/js/input/tex/mathtools/MathtoolsUtil.js`,
+				`node_modules/mathjax-full/js/input/tex/mathtools/MathtoolsConfiguration.js`,
+				`node_modules/mathjax-full/js/input/tex/mathtools/MathtoolsMappings.js`,
+				`node_modules/mathjax-full/js/output/svg.js`,
+				`node_modules/mathjax-full/js/output/svg/WrapperFactory.js`,
+				`node_modules/mathjax-full/js/output/svg/Wrappers.js`,
 			],
+			ignoreDynamicRequires: [],
 		}),
 		copy({
 			targets: [
