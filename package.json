@@ -31,6 +31,7 @@
 	"dependencies": {
 		"@marp-team/marp-core": "^2.1.1",
 		"fs-extra": "^10.0.0",
-		"logdown": "^3.3.1"
+		"logdown": "^3.3.1",
+		"shelljs": "^0.8.4"
 	}
 }
