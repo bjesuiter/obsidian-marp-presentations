@@ -11,10 +11,14 @@ if you want to view the source visit the plugins github repository
 */
 `;
 
+// const outDir = `dist`
+// Hack: To generate all output directly into an obsidian vault for testing:
+const outDir = `../plugin-playground/.obsidian/plugins/obsidian-marp-presentations`;
+
 export default {
 	input: 'main.ts',
 	output: {
-		dir: 'dist',
+		dir: outDir,
 		sourcemap: 'inline',
 		sourcemapExcludeSources: isProd,
 		format: 'cjs',
@@ -28,10 +32,10 @@ export default {
 		commonjs(),
 		copy({
 			targets: [
-				{ src: 'manifest.json', dest: 'dist' },
-				{ src: 'styles.css', dest: 'dist' },
-				{ src: 'versions.json', dest: 'dist' },
-				{ src: 'README.md', dest: 'dist' },
+				{ src: 'manifest.json', dest: outDir },
+				{ src: 'styles.css', dest: outDir },
+				{ src: 'versions.json', dest: outDir },
+				{ src: 'README.md', dest: outDir },
 			],
 		}),
 	],
