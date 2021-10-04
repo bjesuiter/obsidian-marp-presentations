@@ -1,4 +1,4 @@
-import { View, WorkspaceLeaf } from 'obsidian';
+import { Constructor, MarkdownEditView, View, WorkspaceLeaf } from 'obsidian';
 import { generateObsidianViewHeader } from './generate-obsidian-view-header';
 
 export class MarpPresentationView extends View {
@@ -15,7 +15,7 @@ export class MarpPresentationView extends View {
 
 	display() {
 		const { containerEl } = this;
-		const { header, icon, title, actions } = generateObsidianViewHeader(containerEl);
+		const { header, icon, title, actions } = generateObsidianViewHeader(containerEl, this.leaf);
 
 		const body = containerEl.createDiv({ cls: 'view-content' });
 
