@@ -2,6 +2,7 @@ import { View, WorkspaceLeaf } from 'obsidian';
 import { generateObsidianViewHeader } from './generate-obsidian-view-header';
 import { MarpPresentationViewOptions } from './marp-presentation-view-options';
 import { logger } from '../../consts/logger';
+import { exec } from 'shelljs';
 import path from 'path';
 
 export class MarpPresentationView extends View {
@@ -40,8 +41,14 @@ export class MarpPresentationView extends View {
 		// marpContent.innerHTML = html;
 
 		// Workaround with marp-cli
+		const vaultRoot = this.app.vault.getRoot().path;
 		const vaultConfigDir = this.app.vault.configDir;
 		const pluginFolder = path.join(vaultConfigDir, 'plugins', 'marpPluginId');
+		const cli = path.join(pluginFolder, 'marp-mac');
+
+		exec(`${cli} ${this.options.sourceFilePath}`, { cwd: vaultRoot }, (code, stdout, stderr) => {
+			logger.log(`Result of marp-cli: `, { code, stdout, stderr });
+		});
 	}
 
 	getViewType(): string {
