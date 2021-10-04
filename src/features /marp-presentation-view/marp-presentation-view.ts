@@ -2,10 +2,10 @@ import { View } from 'obsidian';
 
 export class MarpPresentationView extends View {
 	getViewType(): string {
-		throw new Error('Method not implemented.');
+		return 'marp-presentation';
 	}
 
 	getDisplayText(): string {
-		throw new Error('Method not implemented.');
+		return 'My Custom View Display Text';
 	}
 }
