@@ -1,4 +1,6 @@
+import { iconObsidianClose } from 'src/consts/icon-obsidian-close';
 import { iconMarpLogo } from '../../consts/icon-marp-logo';
+
 export function generateObsidianViewHeader(containerEl: HTMLElement) {
 	const header = containerEl.createDiv({ cls: 'view-header' });
 
@@ -10,6 +12,10 @@ export function generateObsidianViewHeader(containerEl: HTMLElement) {
 	title.textContent = 'MARP Presentation View';
 
 	const actions = header.createDiv({ cls: 'view-actions' });
+	const closeAction = actions.createEl('a', {
+		cls: 'view-action mod-close-leaf',
+	});
+	closeAction.innerHTML = iconObsidianClose;
 
 	return {
 		header,
