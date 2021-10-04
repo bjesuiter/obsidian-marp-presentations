@@ -18,7 +18,7 @@ export class MarpPlugin extends Plugin {
 
 		this.addSettingTab(new MarpSettingsTab(this.app, this));
 
-		this.registerView('marp-presentation', marpPresentationViewFactory);
+		// this.registerView('marp-presentation', marpPresentationViewFactory);
 
 		// this.addRibbonIcon('dice', 'Sample Plugin', () => {
 		// 	new Notice('This is a notice!');
