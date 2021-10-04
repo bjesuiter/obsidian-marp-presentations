@@ -6,6 +6,7 @@ import { marpPresentationViewFactory } from './features /marp-presentation-view/
 import { logger } from './consts/logger';
 import { MarkdownViewState } from './types/markdown-view-state';
 import { stat } from 'fs';
+import { MarpPresentationViewOptions } from './features /marp-presentation-view/marp-presentation-view-options';
 
 export class MarpPlugin extends Plugin {
 	settings: MarpPluginSettings;
@@ -30,12 +31,12 @@ export class MarpPlugin extends Plugin {
 			name: 'Open Presentation View',
 			checkCallback: (obsidianIsChecking) => {
 				if (!obsidianIsChecking) {
-					this.openPresentationView();
+					const { type, state } = this.app.workspace.activeLeaf.getViewState();
+					this.openPresentationView((state as MarkdownViewState).file);
 					return;
 				}
 
 				const { type, state } = this.app.workspace.activeLeaf.getViewState();
-				logger.log(`activeView state: `, state);
 				if (type === 'markdown' && (state as MarkdownViewState).mode === 'source') {
 					logger.log('Active leaf is markdown source view!');
 					return true;
@@ -75,7 +76,7 @@ export class MarpPlugin extends Plugin {
 		logger.log('loading finshed');
 	}
 
-	openPresentationView() {
+	openPresentationView(sourceFilePath: string) {
 		logger.log('Opening presentation view ...');
 		// the last param shows the new split pane on the left side of the current leaf
 		const newWorkspaceLeaf = this.app.workspace.createLeafBySplit(
@@ -83,7 +84,10 @@ export class MarpPlugin extends Plugin {
 			'vertical',
 			false
 		);
-		newWorkspaceLeaf.open(marpPresentationViewFactory(newWorkspaceLeaf));
+		const options: MarpPresentationViewOptions = {
+			sourceFilePath,
+		};
+		newWorkspaceLeaf.open(marpPresentationViewFactory(newWorkspaceLeaf, options));
 	}
 
 	onunload() {

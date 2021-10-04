@@ -1,12 +1,16 @@
 import { Constructor, MarkdownEditView, View, WorkspaceLeaf } from 'obsidian';
 import { generateObsidianViewHeader } from './generate-obsidian-view-header';
+import { MarpPresentationViewOptions } from './marp-presentation-view-options';
+import { logger } from '../../consts/logger';
 
 export class MarpPresentationView extends View {
 	leaf: WorkspaceLeaf;
 
-	constructor(leaf: WorkspaceLeaf) {
+	constructor(leaf: WorkspaceLeaf, private options: MarpPresentationViewOptions) {
 		super(leaf);
 		this.leaf = leaf;
+
+		logger.log(`Got options in MarpPresentationView: `, options);
 	}
 
 	async onOpen() {
