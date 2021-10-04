@@ -29,6 +29,7 @@ export default {
 		copy({
 			targets: [
 				{ src: 'manifest.json', dest: 'dist' },
+				{ src: 'styles.css', dest: 'dist' },
 				{ src: 'versions.json', dest: 'dist' },
 				{ src: 'README.md', dest: 'dist' },
 			],
