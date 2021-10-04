@@ -3,12 +3,13 @@ import { DEFAULT_SETTINGS } from './consts/marp-plugin-default-settings';
 import { MarpSettingsTab } from './features /marp-settings-tab/marp-settings-tab';
 import { MarpPluginSettings } from './types/marp-plugin-settings';
 import { marpPresentationViewFactory } from './features /marp-presentation-view/marp-presentation-view-factory';
+import { logger } from './consts/logger';
 
 export class MarpPlugin extends Plugin {
 	settings: MarpPluginSettings;
 
 	async onload() {
-		console.log('MARP Presentations Plugin loading');
+		logger.log('loading ...');
 
 		await this.loadSettings();
 
@@ -26,7 +27,7 @@ export class MarpPlugin extends Plugin {
 			id: 'marp-open-presentation-view',
 			name: 'Open MARP Presentation View',
 			callback: () => {
-				console.log('simple callback');
+				logger.log('simple callback');
 			},
 		});
 
@@ -57,6 +58,7 @@ export class MarpPlugin extends Plugin {
 		// });
 
 		// this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+		logger.log('loading finshed');
 	}
 
 	onunload() {
