@@ -32,7 +32,16 @@ export default {
 		json({ preferConst: true }),
 		typescript(),
 		nodeResolve({ browser: true }),
-		commonjs(),
+		commonjs({
+			dynamicRequireTargets: [
+				// Inside mathjax is the following circular dependency:
+				// node_modules/mathjax-full/js/input/tex/TexParser.js
+				// -> node_modules/mathjax-full/js/input/tex/ParseUtil.js
+				// -> node_modules/mathjax-full/js/input/tex/TexParser.js
+				// This simulates a dynamic 'require' environment for the whole mathjax library to resolve the problem
+				`node_modules/mathjax-full/**/*.js`,
+			],
+		}),
 		copy({
 			targets: [
 				{ src: 'manifest.json', dest: outDir },
