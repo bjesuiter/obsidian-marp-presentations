@@ -2,6 +2,7 @@ import { Plugin } from 'obsidian';
 import { DEFAULT_SETTINGS } from './consts/marp-plugin-default-settings';
 import { MarpSettingsTab } from './features /marp-settings-tab/marp-settings-tab';
 import { MarpPluginSettings } from './types/marp-plugin-settings';
+import { marpPresentationViewFactory } from './features /marp-presentation-view/marp-presentation-view-factory';
 
 export class MarpPlugin extends Plugin {
 	settings: MarpPluginSettings;
@@ -10,6 +11,10 @@ export class MarpPlugin extends Plugin {
 		console.log('loading plugin');
 
 		await this.loadSettings();
+
+		this.addSettingTab(new MarpSettingsTab(this.app, this));
+
+		this.registerView('marp-presentation', marpPresentationViewFactory);
 
 		// this.addRibbonIcon('dice', 'Sample Plugin', () => {
 		// 	new Notice('This is a notice!');
@@ -34,8 +39,6 @@ export class MarpPlugin extends Plugin {
 		// 		return false;
 		// 	}
 		// });
-
-		this.addSettingTab(new MarpSettingsTab(this.app, this));
 
 		// this.registerCodeMirror((cm: CodeMirror.Editor) => {
 		// 	console.log('codemirror', cm);
