@@ -5,6 +5,8 @@ import { logger } from '../../consts/logger';
 import { exec } from 'shelljs';
 import execa from 'execa';
 import path from 'path';
+import { marpPluginId } from 'src/consts/marp-plugin-id';
+import { getVaultAbsolutePath } from '../../helper/get-vault-absolute-path';
 
 export class MarpPresentationView extends View {
 	leaf: WorkspaceLeaf;
@@ -42,10 +44,17 @@ export class MarpPresentationView extends View {
 		// marpContent.innerHTML = html;
 
 		// Workaround with marp-cli
-		const vaultRoot = this.app.vault.getRoot().path;
-		const vaultConfigDir = this.app.vault.configDir;
-		const pluginFolder = path.join(vaultConfigDir, 'plugins', 'marpPluginId');
-		const cli = path.join(pluginFolder, 'marp-mac');
+		const vaultRoot = getVaultAbsolutePath(this.app);
+		const vaultConfigDir = path.join(vaultRoot, this.app.vault.configDir);
+		const pluginFolder = path.join(vaultConfigDir, 'plugins', marpPluginId);
+		const cli = path.join(pluginFolder, 'assets', 'marp-mac');
+
+		logger.log(`Some calculated paths: `, {
+			vaultRoot,
+			vaultConfigDir,
+			pluginFolder,
+			cli,
+		});
 
 		try {
 			const { exitCode, stdout } = await execa(cli, [this.options.sourceFilePath], {
