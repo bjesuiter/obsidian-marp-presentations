@@ -8,7 +8,7 @@ export class MarpPlugin extends Plugin {
 	settings: MarpPluginSettings;
 
 	async onload() {
-		console.log('loading plugin');
+		console.log('MARP Presentations Plugin loading');
 
 		await this.loadSettings();
 
@@ -21,6 +21,14 @@ export class MarpPlugin extends Plugin {
 		// });
 
 		// this.addStatusBarItem().setText('Status Bar Text');
+
+		this.addCommand({
+			id: 'marp-open-presentation-view',
+			name: 'Open MARP Presentation View',
+			callback: () => {
+				console.log('simple callback');
+			},
+		});
 
 		// this.addCommand({
 		// 	id: 'open-sample-modal',
