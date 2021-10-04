@@ -1,15 +1,8 @@
 import { App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-
-interface MyPluginSettings {
-	mySetting: string;
-}
-
-const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
-}
+import { MarpPluginSettings } from './src/types/marp-plugin-settings';
 
 export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+	settings: MarpPluginSettings;
 
 	async onload() {
 		console.log('loading plugin');
