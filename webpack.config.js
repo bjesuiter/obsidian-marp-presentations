@@ -15,7 +15,10 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
-		modules: ['node_modules'],
+		// Add an alias
+		// alias: {
+		// 	obsidian: path.resolve(__dirname, 'node_modules/obsidian/obsidian.d.ts'),
+		// },
 	},
 	output: {
 		filename: 'main.js',
