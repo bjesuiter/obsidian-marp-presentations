@@ -35,6 +35,7 @@ export default {
 		commonjs(),
 		copy({
 			targets: [
+				{ src: 'assets', dest: outDir },
 				{ src: 'manifest.json', dest: outDir },
 				{ src: 'styles.css', dest: outDir },
 				{ src: 'versions.json', dest: outDir },
