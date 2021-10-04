@@ -1,4 +1,4 @@
-import * as logdown from 'logdown';
+import logdown from 'logdown';
 
 export const logger = logdown(`MARP Presentations Plugin`);
 logger.state.isEnabled = true;
