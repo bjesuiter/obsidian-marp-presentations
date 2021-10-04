@@ -1,4 +1,4 @@
-import { Plugin } from 'obsidian';
+import { Plugin, View } from 'obsidian';
 import { DEFAULT_SETTINGS } from './consts/marp-plugin-default-settings';
 import { MarpSettingsTab } from './features /marp-settings-tab/marp-settings-tab';
 import { MarpPluginSettings } from './types/marp-plugin-settings';
@@ -25,9 +25,16 @@ export class MarpPlugin extends Plugin {
 
 		this.addCommand({
 			id: 'marp-open-presentation-view',
-			name: 'Open MARP Presentation View',
+			name: 'Open Presentation View',
 			callback: () => {
-				logger.log('simple callback');
+				logger.log('Opening presentation view ...');
+				// the last param shows the new split pane on the left side of the current leaf
+				const newWorkspaceLeaf = this.app.workspace.createLeafBySplit(
+					this.app.workspace.getLeaf(),
+					'vertical',
+					false
+				);
+				newWorkspaceLeaf.open(marpPresentationViewFactory(newWorkspaceLeaf));
 			},
 		});
 
