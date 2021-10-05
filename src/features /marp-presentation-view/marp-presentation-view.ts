@@ -57,9 +57,13 @@ export class MarpPresentationView extends View {
 		});
 
 		try {
-			const { exitCode, stdout } = await execa(cli, [this.options.sourceFilePath], {
-				cwd: vaultRoot,
-			});
+			const { exitCode, stdout } = execa.sync(
+				cli,
+				[this.options.sourceFilePath, '-o', 'output2.html'],
+				{
+					cwd: vaultRoot,
+				}
+			);
 
 			logger.log(`Result of marp-cli: `, { exitCode, stdout });
 		} catch (error) {
