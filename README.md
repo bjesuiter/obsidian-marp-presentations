@@ -1,5 +1,18 @@
 # MARP Presentations (Obsidian Plugin)
 
+**Heads Up! - Work in Progress!** 
+---------------------------------
+This Plugin is highly experimental and work in progress. 
+In theory, it's not too complicated, but currently the npm marp-core package 
+does not compil with the Obsidian Plugin Rollup Configuration. 
+
+See: https://github.com/bjesuiter/obsidian-marp-presentations/issues/1
+
+Also at marp-core repo: https://github.com/marp-team/marp-core/issues/259
+
+
+## Description
+
 The default presentation/slides feature in Obsidian lacks some configurability for me. 
 For example: 
 
