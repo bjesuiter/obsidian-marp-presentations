@@ -14,7 +14,7 @@ if you want to view the source visit the plugins github repository
 
 // const outDir = `dist`
 // Hack: To generate all output directly into an obsidian vault for testing:
-const outDir = `../plugin-playground/.obsidian/plugins/obsidian-marp-presentations`;
+const outDir = `./test-marp-plugin/.obsidian/plugins/obsidian-marp-presentations`;
 
 export default {
 	input: 'main.ts',
