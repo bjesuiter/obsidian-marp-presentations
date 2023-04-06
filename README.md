@@ -30,3 +30,4 @@ If you want to contribute, please feel encouraged to submit a PR to [the plugin 
 
 - [Obsidian Plugin API Typing Repo](https://github.com/obsidianmd/obsidian-api)
 - [Example on how to generate a modal dialog](https://github.com/obsidianmd/obsidian-sample-plugin/blob/c228a7022301e4a74614a67570d38ed2e2e05a71/main.ts#L35)
+- [Unofficial Obsidian Plugin Developer Docs by marcus.se.net](https://marcus.se.net/obsidian-plugin-docs/)
